@@ -3,9 +3,9 @@
   "owner": { "name": "congdao" },
   "plugins": [
     {
-      "name": "my-skills",
-      "source": "./my-skills",
-      "description": "Reusable personal skills: grill-me, to-plan"
+      "name": "plan-skills",
+      "source": "./plan-skills",
+      "description": "Planning skills: grill-me, to-plan"
     }
   ]
 }
