@@ -38,7 +38,7 @@ Then read the **most recent plan file** (highest number) **within the chosen tar
 
 While scanning, also skim the **What to build** / **Goal** section (or first paragraph) of every plan in `to-do/` and `backlog/` and note, in a line or two each, what area/feature it touches. This is the "open plans" inventory used for conflict-checking in Step 5 — build it now while the files are already open, rather than re-reading them later.
 
-`docs/plans/_deprecated/` is an archive of superseded plans and is never scanned for numbering, templates, or conflicts — it holds closed/superseded work, not open plans.
+`docs/plans/_deprecated/` is an archive of superseded plans and is never scanned for numbering, templates, or conflicts — it holds closed/superseded work, not open plans. **Never create this folder.** It only exists if the user has manually archived plans into it; if it's absent, skip it and move on — do not `mkdir` it "just in case."
 
 ### 3. Gather source material
 
