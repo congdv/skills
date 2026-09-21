@@ -97,7 +97,30 @@ Mirror the section structure of the most recent plan. Two common formats:
 
 Choose whichever format matches the majority of existing plans in the directory. When in doubt, use the standard format — it's simpler.
 
-### 5. Check for conflicts with open plans
+### 5. Draft ASCII wireframe (UI plans only)
+
+If plan touches any UI/frontend surface — new screen, layout change, new component, modified interaction, new form/dialog — draft an ASCII wireframe of resulting UI before moving on. Embed it in the plan under a `## Wireframe` heading.
+
+- Use box-drawing characters (`┌─┐│└┘`) to mock layout: containers, key elements, labels, buttons.
+- Cover relevant states beyond the happy path — empty, loading, error — when the plan touches them.
+- One wireframe per distinct screen/component the plan introduces or changes. For multi-step flows, one per step.
+- Purpose: lock the visual shape before code exists, so the built UI matches what the user pictured — not just what "What to build" prose implied.
+
+Skip this step only for backend-only or non-UI plans (API routes, migrations, cron jobs, etc. with no frontend surface).
+
+Example:
+```
+## Wireframe
+
+┌────────────────────────────────────┐
+│ Staff                    [+ Add]    │
+├────────────────────────────────────┤
+│ ● Jane Doe        Active    [Edit]  │
+│ ○ John Smith      Disabled  [Edit]  │
+└────────────────────────────────────┘
+```
+
+### 6. Check for conflicts with open plans
 
 Compare the drafted plan against the open-plans inventory gathered in Step 2 (everything in `to-do/` and `backlog/`, excluding `_deprecated/`). Look specifically for:
 
@@ -113,20 +136,21 @@ If something conflicts, **stop before quizzing the user on scope** — invoke `/
 - adding/correcting a `Blocked by` relationship,
 - or revising the conflicting open plan (only with the user's explicit sign-off — never silently edit or move another plan to `_deprecated/`).
 
-Do not proceed to Step 6 until the conflict is resolved and the user has confirmed the resolution.
+Do not proceed to Step 7 until the conflict is resolved and the user has confirmed the resolution.
 
-### 6. Quiz the user
+### 7. Quiz the user
 
-Present the draft plan and ask:
+Present the draft plan (including any wireframe from Step 5) and ask:
 
 - Does the scope feel right — too broad, too narrow?
 - Should this be split into multiple plans?
 - Are blocked-by dependencies correct?
 - Is the type (AFK / HITL) right?
+- **If a wireframe was drafted**: does the layout match what you expected — any elements missing, misplaced, or states not covered?
 
 Iterate until the user approves. **Do not write the file until approved.**
 
-### 7. Compute the file name
+### 8. Compute the file name
 
 - **Next number** = highest existing integer across both `to-do/` and `backlog/`, + 1
 - **Zero-padding** = match existing width (e.g. `28` exists → next is `29`, not `029`)
@@ -139,11 +163,11 @@ docs/plans/to-do/106-stripe-webhook-handler.md
 docs/plans/backlog/107-manager-invite-flow.md
 ```
 
-### 8. Write the file
+### 9. Write the file
 
 Write the approved plan to the computed path. Confirm the path to the user.
 
-### 9. Update affected architecture docs
+### 10. Update affected architecture docs
 
 If the plan describes changes to the tech stack, data model, or system structure, check
 `docs/tech/` for files that need updating in the same session:
@@ -171,3 +195,4 @@ the plan.
 - **Acceptance criteria are verifiable**: each one can be checked by running the app or a test
 - **Blocked by is specific**: reference the plan slug or number, not vague dependencies
 - **Type is honest**: HITL means a human must make a decision or review before the plan can complete; AFK means an agent can implement and merge without interruption
+- **UI plans carry a wireframe**: any plan touching a frontend surface includes an ASCII `## Wireframe` section (Step 5) approved by the user before the file is written
