@@ -97,6 +97,8 @@ Mirror the section structure of the most recent plan. Two common formats:
 
 Choose whichever format matches the majority of existing plans in the directory. When in doubt, use the standard format — it's simpler.
 
+**Risk review (write paths and validation changes):** when the plan changes how data is written, validated, or migrated on the live product, include a short `## Risks` section before `## Acceptance criteria`. Cover data loss, regressions for existing rows or callers (e.g. archived/legacy records that new validation would reject), and performance (extra queries, locks, migrations). Write "None — <why>" for a category that doesn't apply. Present it in the draft so the user doesn't have to ask.
+
 ### 5. Draft ASCII wireframe (UI plans only)
 
 If plan touches any UI/frontend surface — new screen, layout change, new component, modified interaction, new form/dialog — draft an ASCII wireframe of resulting UI before moving on. Embed it in the plan under a `## Wireframe` heading.
