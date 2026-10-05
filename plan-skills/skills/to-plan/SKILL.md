@@ -36,7 +36,7 @@ Extract from the combined set of filenames:
 
 Then read the **most recent plan file** (highest number) **within the chosen target folder** to extract its exact section headings and structure. If the target folder has no plans yet (e.g. a fresh `backlog/`), fall back to the most recent plan in the other folder instead — the two folders share the same template.
 
-While scanning, also skim the **What to build** / **Goal** section (or first paragraph) of every plan in `to-do/` and `backlog/` and note, in a line or two each, what area/feature it touches. This is the "open plans" inventory used for conflict-checking in Step 5 — build it now while the files are already open, rather than re-reading them later.
+While scanning, also skim the **What to build** / **Goal** section (or first paragraph) of every plan in `to-do/` and `backlog/` and note, in a line or two each, what area/feature it touches. This is the "open plans" inventory used for conflict-checking in Step 6 — build it now while the files are already open, rather than re-reading them later.
 
 `docs/plans/_deprecated/` is an archive of superseded plans and is never scanned for numbering, templates, or conflicts — it holds closed/superseded work, not open plans. **Never create this folder.** It only exists if the user has manually archived plans into it; if it's absent, skip it and move on — do not `mkdir` it "just in case."
 
@@ -129,7 +129,7 @@ Compare the drafted plan against the open-plans inventory gathered in Step 2 (ev
 - **Broken or missing sequencing**: this plan should be `Blocked by` an open plan (or vice versa) but isn't, or an existing plan's `Blocked by` chain would become inconsistent once this plan exists.
 - **Duplicate work**: an open plan already covers what this plan is proposing.
 
-If nothing conflicts, say so briefly and move on to Step 6.
+If nothing conflicts, say so briefly and move on to Step 7.
 
 If something conflicts, **stop before quizzing the user on scope** — invoke `/grill-me`, framing the specific conflict as the topic: name the two plans, state exactly what's contradictory or overlapping, and drive to one of:
 - narrowing this plan's scope to remove the overlap,
@@ -138,7 +138,11 @@ If something conflicts, **stop before quizzing the user on scope** — invoke `/
 
 Do not proceed to Step 7 until the conflict is resolved and the user has confirmed the resolution.
 
-### 7. Quiz the user
+### 7. Consult the advisor on the draft
+
+Call the `advisor` tool (no parameters; it sees the full conversation) once the draft, wireframe, and conflict check are done, **before** quizzing the user. Fold its feedback into the draft — scope, splitting, sequencing, missed conflicts. If it contradicts evidence already gathered from the plans, raise the conflict in one more advisor call rather than silently switching.
+
+### 8. Quiz the user
 
 Present the draft plan (including any wireframe from Step 5) and ask:
 
@@ -150,7 +154,7 @@ Present the draft plan (including any wireframe from Step 5) and ask:
 
 Iterate until the user approves. **Do not write the file until approved.**
 
-### 8. Compute the file name
+### 9. Compute the file name
 
 - **Next number** = highest existing integer across both `to-do/` and `backlog/`, + 1
 - **Zero-padding** = match existing width (e.g. `28` exists → next is `29`, not `029`)
@@ -163,11 +167,11 @@ docs/plans/to-do/106-stripe-webhook-handler.md
 docs/plans/backlog/107-manager-invite-flow.md
 ```
 
-### 9. Write the file
+### 10. Write the file
 
 Write the approved plan to the computed path. Confirm the path to the user.
 
-### 10. Update affected architecture docs
+### 11. Update affected architecture docs
 
 If the plan describes changes to the tech stack, data model, or system structure, check
 `docs/tech/` for files that need updating in the same session:
@@ -179,6 +183,10 @@ If the plan describes changes to the tech stack, data model, or system structure
 Update any file whose content would be wrong or misleading after the plan is implemented.
 Do this before ending the session — don't leave docs describing a stack that no longer matches
 the plan.
+
+### 12. Final advisor check
+
+After the plan file is written and docs are updated (both durable), call `advisor` once more before declaring done. Apply any fixes it raises.
 
 ## Numbering Rules
 
