@@ -6,7 +6,7 @@ Claude Code plugin marketplace. Each plugin groups skills by domain.
 
 | Plugin | Skills | Description |
 |---|---|---|
-| [plan-skills](plan-skills) | `grill-me`, `to-plan` | Interview/stress-test a plan, convert a spec into a numbered plan file. |
+| [plan-skills](plan-skills) | `grill-me`, `to-plan`, `workflow-docs` | Interview/stress-test a plan, convert a spec into a numbered plan file. |
 
 ## Adding a plugin
 
