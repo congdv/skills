@@ -181,6 +181,7 @@ If the plan describes changes to the tech stack, data model, or system structure
 - `docs/tech/architecture.md` — monorepo structure, tech stack table, request lifecycle
 - `docs/tech/data-model.md` — table definitions, column renames
 - `docs/tech/auth-and-tenancy.md` — auth flow changes
+- `docs/workflows/<name>.md` — business workflow changes (invoke `/workflow-docs`)
 
 Update any file whose content would be wrong or misleading after the plan is implemented.
 Do this before ending the session — don't leave docs describing a stack that no longer matches

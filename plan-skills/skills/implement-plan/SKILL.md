@@ -49,6 +49,7 @@ After `EnterWorktree` completes, run `rm -rf .claire/` from the repo root to rem
 
 Invoke `superpowers:subagent-driven-development`. Provide subagents with:
 - Full plan text (copy verbatim — don't make subagents read the file)
+- **Workflow docs** (if the plan touches a workflow in `docs/workflows/`, read it and pass its **Important Rules** as constraints — see `/workflow-docs`)
 - Tech stack context (see below)
 - Architecture rules (read `docs/tech/architecture.md` and pass the relevant sections — subagents must follow the module conventions, route factory pattern, and file structure defined there)
 - **UI token rules** (for any UI work — read `docs/tech/ui-tokens.md` and pass the token class reference; subagents must use named token classes, never raw values, inline styles, or `var(--...)` in JSX)
@@ -97,6 +98,8 @@ For each doc that diverges from the implementation:
 - Auth or tenancy behaviour that diverges from `docs/tech/auth-and-tenancy.md`
 - A new integration not documented in `docs/tech/integrations.md`
 - Any "TBD" or placeholder that the implementation now resolves
+
+**Workflow docs:** did the plan alter an important business workflow? If yes, update the matching `docs/workflows/<name>.md` (or create one per `/workflow-docs`). If no, leave it alone.
 
 If no drift is found, state "No docs drift detected" and move on.
 
